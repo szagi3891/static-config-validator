@@ -70,6 +70,9 @@ const RulesConfig = {
     "@typescript-eslint/prefer-nullish-coalescing": "error",
     "@typescript-eslint/prefer-as-const": "error",
     "no-unused-expressions": "error",
+
+    //Wymusza żeby każdy case (w switch), kończył się break, continue, return
+    "no-fallthrough": "error",
 }
 
 export async function checkEslint() {
