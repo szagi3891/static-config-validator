@@ -35,10 +35,6 @@ export async function checkEslint() {
     // const result = await execAndGet('.', 'pnpx eslint --print-config path/to/your/file.js');
     const result = await loadRules();
 
-    console.info('\n\n\n');
-    console.info(result);
-    console.info('\n\n\n');
-
     const data = ConfigZod.jsonParse(result);
 
     if (data.type === 'error') {
@@ -58,7 +54,7 @@ export async function checkEslint() {
         }
 
         if (JSON.stringify(def) === JSON.stringify(ruleExpected)) {
-            //ok
+            delete data.data[ruleName];
         } else {
             return showErrorAndExit([
                 `Value other than expected: ${ruleName}`,
@@ -70,5 +66,9 @@ export async function checkEslint() {
         }
     }
     
+    console.info('\n\n\n');
+    console.info(JSON.stringify(data.data, null, 4));
+    console.info('\n\n\n');
+
     console.log(`%cEslint configuration ok`, 'color: green;');
 }
