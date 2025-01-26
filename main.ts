@@ -1,4 +1,4 @@
-console.info('hello world');
+console.info('hello world 2');
 
 
 //TODO - walidacja deno.json
