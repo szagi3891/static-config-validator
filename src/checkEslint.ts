@@ -57,7 +57,7 @@ const RulesConfig = {
 
 export async function checkEslint() {
 
-    const result = await execAndGet('.', 'npx eslint --print-config path/to/your/file.js');
+    const result = await execAndGet('.', 'pnpx eslint --print-config path/to/your/file.js');
 
     const data = ConfigZod.jsonParse(result);
 
