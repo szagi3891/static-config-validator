@@ -1,40 +1,43 @@
 import { z } from "npm:zod";
-import { execAndGet } from "./utils/exec.ts";
 import { CheckByZod } from "./utils/lib.ts";
 import { showErrorAndExit } from "./utils/showErrorAndExit.ts";
+import { loadRules } from "./loadEslint.ts";
 
 const RuleZod = z.record(
     z.string(),
     z.unknown()
 );
 
-const ConfigZod = new CheckByZod('ConfigZod', z.object({
-    rules: RuleZod
-}));
+const ConfigZod = new CheckByZod('ConfigZod', RuleZod);
 
 const RulesConfig = {
-    "@typescript-eslint/no-explicit-any": [2],
-    "@typescript-eslint/await-thenable": [2],
-    "@typescript-eslint/no-floating-promises": [2],
-    "@typescript-eslint/ban-ts-comment": [2],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/ban-ts-comment": "error",
 
-    "@typescript-eslint/no-unsafe-function-type": [2],
-    "@typescript-eslint/use-unknown-in-catch-callback-variable": [2],
-    "@typescript-eslint/no-unsafe-assignment": [2],
-    "@typescript-eslint/no-unsafe-member-access": [2],
-    "@typescript-eslint/no-unsafe-call": [2],
-    "@typescript-eslint/no-unsafe-return": [2],
-    "@typescript-eslint/no-unsafe-argument": [2],
-    "@typescript-eslint/no-unsafe-enum-comparison": [2],
-    "@typescript-eslint/no-unsafe-declaration-merging": [2],
-    "no-unsafe-optional-chaining": [2, {
-        "disallowArithmeticOperators": false
+    "@typescript-eslint/no-unsafe-function-type": "error",
+    "@typescript-eslint/use-unknown-in-catch-callback-variable": "error",
+    "@typescript-eslint/no-unsafe-assignment": "error",
+    "@typescript-eslint/no-unsafe-member-access": "error",
+    "@typescript-eslint/no-unsafe-call": "error",
+    "@typescript-eslint/no-unsafe-return": "error",
+    "@typescript-eslint/no-unsafe-argument": "error",
+    "@typescript-eslint/no-unsafe-enum-comparison": "error",
+    "@typescript-eslint/no-unsafe-declaration-merging": "error",
+    "no-unsafe-optional-chaining": ["error", {
+        "disallowArithmeticOperators": true
     }],
 }
 
 export async function checkEslint() {
 
-    const result = await execAndGet('.', 'pnpx eslint --print-config path/to/your/file.js');
+    // const result = await execAndGet('.', 'pnpx eslint --print-config path/to/your/file.js');
+    const result = await loadRules();
+
+    console.info('\n\n\n');
+    console.info(result);
+    console.info('\n\n\n');
 
     const data = ConfigZod.jsonParse(result);
 
@@ -44,7 +47,7 @@ export async function checkEslint() {
     }
 
     for (const [ruleName, ruleExpected] of Object.entries(RulesConfig)) {
-        const def = data.data.rules[ruleName];
+        const def = data.data[ruleName];
 
         if (def === undefined) {
             return showErrorAndExit([

@@ -7,6 +7,7 @@
     "npm:eslint@9.19.0": "9.19.0",
     "npm:mobx@*": "6.13.5",
     "npm:superjson@*": "2.2.2",
+    "npm:typescript@*": "5.6.3",
     "npm:unws@*": "0.2.4_ws@8.18.0",
     "npm:xml-js@*": "1.6.11",
     "npm:zod@*": "3.24.1"
@@ -564,6 +565,9 @@
       "dependencies": [
         "prelude-ls"
       ]
+    },
+    "typescript@5.6.3": {
+      "integrity": "sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw=="
     },
     "unws@0.2.4_ws@8.18.0": {
       "integrity": "sha512-/N1ajiqrSp0A/26/LBg7r10fOcPtGXCqJRJ61sijUFoGZMr6ESWGYn7i0cwr7fR7eEECY5HsitqtjGHDZLAu2w==",
