@@ -3,32 +3,9 @@ import { execAndGet } from "./utils/exec.ts";
 import { CheckByZod } from "./utils/lib.ts";
 import { showErrorAndExit } from "./utils/showErrorAndExit.ts";
 
-const LevelZod = z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-])
 const RuleZod = z.record(
     z.string(),
-    z.union([
-        z.tuple([
-            LevelZod
-        ]),
-        z.tuple([
-            LevelZod,
-            z.string(),
-        ]),
-        z.tuple([
-            LevelZod,
-            z.record(
-                z.string(), z.union([
-                    z.boolean(),
-                    z.string(),
-                    z.array(z.unknown())
-                ])
-            )
-        ])
-    ])
+    z.unknown()
 );
 
 const ConfigZod = new CheckByZod('ConfigZod', z.object({
