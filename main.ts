@@ -1,4 +1,8 @@
-console.info('hello world 2');
+import { checkEslint } from "./src/checkEslint.ts";
+
+console.info('Static config validator - start');
+
+await checkEslint();
 
 
 //TODO - walidacja deno.json
@@ -11,3 +15,11 @@ console.info('hello world 2');
 //     "noUncheckedIndexedAccess": true,
 //     "noPropertyAccessFromIndexSignature": true
 //   }
+
+
+//Listować pliki które mają całkowicie wyłaczonego eslint
+/* eslint-disable */
+
+//listować wykluczenia ts-a
+//listować miejsca gdzie jest wyłączony TS
+
