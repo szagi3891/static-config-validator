@@ -80,10 +80,11 @@ const RulesConfig = {
     "@typescript-eslint/restrict-template-expressions": "error",
     "prefer-template": "error",
 
+    //Występują problemy w nextjs z tymi regułami
     //nie pozwala na relatywne odnoszenie się do rodziców
-    "import/no-relative-parent-imports": "error",
+    // "import/no-relative-parent-imports": "error",
 
-    "import/no-duplicates": "error",
+    // "import/no-duplicates": "error",
 
     "@typescript-eslint/restrict-plus-operands": "error",
 }
