@@ -11,6 +11,8 @@ await checkEslint();
 
 //TODO - walidacja eslintów
 
+//TODO - https://www.youtube.com/watch?v=zeNh4fuJhcA
+
 // "compilerOptions": {
 //     "noUncheckedIndexedAccess": true,
 //     "noPropertyAccessFromIndexSignature": true

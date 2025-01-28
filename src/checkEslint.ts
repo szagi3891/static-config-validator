@@ -73,6 +73,19 @@ const RulesConfig = {
 
     //Wymusza żeby każdy case (w switch), kończył się break, continue, return
     "no-fallthrough": "error",
+
+    //Wymuszaa pisanie warunków wprost
+    "no-negated-condition": "error",
+
+    "@typescript-eslint/restrict-template-expressions": "error",
+    "prefer-template": "error",
+
+    //nie pozwala na relatywne odnoszenie się do rodziców
+    "import/no-relative-parent-imports": "error",
+
+    "import/no-duplicates": "error",
+
+    "@typescript-eslint/restrict-plus-operands": "error",
 }
 
 export async function checkEslint() {
