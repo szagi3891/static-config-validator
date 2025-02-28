@@ -87,6 +87,9 @@ const RulesConfig = {
     // "import/no-duplicates": "error",
 
     "@typescript-eslint/restrict-plus-operands": "error",
+
+    //Żeby się duplikaty importów nie powtarzały
+    "import/no-duplicates": "error"
 }
 
 export async function checkEslint() {
